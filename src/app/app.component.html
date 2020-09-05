@@ -1,0 +1,80 @@
+<div class="m-5">
+    <!-- main app container -->
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    
+                    
+                    <form #ref="ngForm" name="form" (ngSubmit)="ref.form.valid && submitdata()" >
+                       
+                       
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input class="form-control" 
+                            name="fname" 
+                            [(ngModel)]="formdata.fname" 
+                            #fname=ngModel 
+                            [ngClass]=" { 'is-invalid':ref.submited && fname.invalid } " 
+                            required 
+                            pattern="^[a-z]+$" />
+
+                            <div *ngIf="ref.submitted && fname.invalid" >
+                                <span *ngIf="fname.errors.required" class="text-danger">Name is Required</span>
+                                <span *ngIf="fname.errors.pattern" class="text-danger">Name should be lowercase Alphabets</span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" 
+                            name="emailid" 
+                            [(ngModel)]="formdata.emailid" 
+                            #emailid=ngModel 
+                            pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" 
+                            [ngClass]=" { 'is-invalid':ref.submited && emailid.invalid } " required  />
+
+                            <div *ngIf="ref.submitted && emailid.invalid" >
+                                <span *ngIf="emailid.errors.required" class="text-danger">Email is Required</span>
+                                <span *ngIf="emailid.errors.pattern" class="text-danger">Email should be lowercase Alphabets</span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" 
+                            name="pwd" 
+                            [(ngModel)]="formdata.pwd" 
+                            #pwd=ngModel 
+                            pattern="^[a-z0-9]{6,}$" 
+                            [ngClass]=" { 'is-invalid':ref.submited && pwd.invalid } " required minlength="6" />
+
+                            <div *ngIf="ref.submitted && pwd.invalid" >
+                                <span *ngIf="pwd.errors.required" class="text-danger">Password is Required</span>
+                                <span *ngIf="pwd.errors.pattern" class="text-danger">Password min 6 characters length</span>
+                            </div>
+
+                        </div>
+
+                        
+                        
+                        <div class="form-group">
+                            <button class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    {{ ref.value | json }}
+
+
+
+    
+    </div>
